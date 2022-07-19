@@ -1,0 +1,70 @@
+﻿{% extends 'myapp/mem_index.html' %}
+{% block content %}
+    <section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2>All Member <small class="text-muted">Welcome to Digital Society</small></h2>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10"
+                        type="button">
+                        <i class="zmdi zmdi-plus"></i>
+                    </button>
+
+
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="zmdi zmdi-home"></i>
+                                Digital Society</a></li>
+                        <li class="breadcrumb-item">Memner</li>
+                        <li class="breadcrumb-item active">All Memner</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="body">
+                            <ul class="nav nav-tabs padding-0">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab"
+                                        href="#Permanent">All Member</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content m-t-10">
+                        <div class="tab-pane active" id="Permanent">
+                            <div class="row clearfix">
+                                {% for mem in mem1_id %}
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="card xl-blue member-card doctor">
+                                        <div class="body">
+                                            <div class="member-thumb">
+                                                {% if mem.m_pic %}
+                                                <img src="{{mem.m_pic.url}}" class="img-fluid"
+                                                    alt="profile-image" style="height:185.25px; width:185.25px;">
+                                                {% endif %}
+                                            </div>
+                                            <div class="detail">
+                                                <h4 class="m-b-0">{{mem.m_f_name}}</h4>
+                                                <h6 class="m-b-0">{{mem.m_l_name}}</h6>
+                                                <p class="text-muted">Member</p>
+                                                <p class="text-muted">{{mem.m_about_me}}</p>
+                                                <a href="#" class="btn btn-default btn-round btn-simple">View
+                                                    Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    {% endblock content %}

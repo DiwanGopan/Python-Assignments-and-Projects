@@ -1,0 +1,76 @@
+﻿{% extends 'myapp/mem_index.html' %}
+{% block content %}
+
+    <section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2>All Event<small class="text-muted">Welcome to Digital Society</small></h2>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="zmdi zmdi-home"></i>
+                                Digital Society</a></li>
+                        <li class="breadcrumb-item">All Event</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+        {% if not eve_id|length == 0 %}
+            <div class="blog-page">
+                <div class="row">
+                    {% for eve in eve_id %}
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card single_post">
+                            <div class="body">
+                                <h3 class="m-t-0 m-b-5"><a href="#">{{eve.e_title}}</a></h3>
+                                <ul class="meta">
+                                    <li><a href="#"><i class="zmdi zmdi-account col-blue"></i>Posted By: {{eve.user_id.firstname}}</a>
+                                    </li>
+                                    <li><a href="#"><i class="zmdi zmdi-label col-lime"></i>{{eve.e_whenpublished}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-comment-text col-blue"></i>Views: 3</a></li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                {% if eve.e_pic %}
+                                <div class="img-post m-b-15">
+                                    <img src="{{eve.e_pic.url}}" alt="Awesome Image" style="height: 300 .2px; width:301.75px;">
+                                </div>
+                                {% endif %}
+                                <p>Date : {{eve.e_date}}</p>
+                                <p>Venue : {{eve.e_venue}}</p>
+                                <p>{{eve.e_content}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <center>
+                <br><br><br><br><br>
+            
+                <div class="breadcrumb-item">
+                    <h3>There is No Events</h3>
+                </div>
+                <hr>
+                <br><br><br>
+                
+                <div>
+                    <a href="{% url 'home' %}" class="breadcrumb-item">
+                        Dashboard
+                <br><br><br>
+                    </a>
+                </div>
+                <hr>
+                <br><br><br><br><br>
+            
+            
+            </center>
+            
+            {% endif %}
+            
+        </div>
+    </section>
+    {% endblock content %}
